@@ -1,0 +1,298 @@
+/* ===========================
+   GLOBAL CSS
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#ffffff;
+    color:#111;
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+/* ===========================
+        HEADER
+=========================== */
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    background:#fff;
+    z-index:999;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:90px;
+}
+
+.logo img{
+    width:170px;
+}
+
+nav ul{
+    display:flex;
+    gap:50px;
+}
+
+nav a{
+    color:#222;
+    font-size:17px;
+    font-weight:600;
+    transition:.3s;
+    position:relative;
+}
+
+nav a:hover,
+nav a.active{
+    color:#1e63ff;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:#1e63ff;
+    transition:.4s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+.nav-icons{
+    display:flex;
+    gap:25px;
+    font-size:22px;
+}
+
+.nav-icons i{
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-icons i:hover{
+    color:#1e63ff;
+    transform:scale(1.15);
+}
+
+
+/* ===========================
+      HERO SECTION
+=========================== */
+
+.hero{
+    padding-top:120px;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    background:linear-gradient(to right,#ffffff,#f8fbff);
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    align-items:center;
+    gap:30px;
+}
+
+.hero-left img{
+    width:100%;
+    animation:updown 5s infinite;
+}
+
+.hero-right img{
+    width:100%;
+    animation:float 4s infinite;
+}
+
+.hero-content h5{
+    color:#1e63ff;
+    font-size:20px;
+    letter-spacing:3px;
+}
+
+.hero-content h1{
+    font-size:72px;
+    font-weight:800;
+    line-height:80px;
+    margin:15px 0;
+}
+
+.hero-content p{
+    font-size:18px;
+    color:#666;
+    line-height:30px;
+}
+
+/* ===========================
+     HERO ICONS
+=========================== */
+
+.hero-icons{
+    display:flex;
+    gap:25px;
+    margin:45px 0;
+}
+
+.hero-icons div{
+    width:140px;
+    text-align:center;
+}
+
+.hero-icons i{
+    width:65px;
+    height:65px;
+    line-height:65px;
+    border-radius:50%;
+    background:#1e63ff;
+    color:#fff;
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.hero-icons span{
+    font-size:14px;
+    font-weight:600;
+}
+
+/* ===========================
+      BUTTONS
+=========================== */
+
+.hero-btn{
+    display:flex;
+    gap:20px;
+}
+
+.btn{
+    padding:16px 40px;
+    background:#1e63ff;
+    color:#fff;
+    border-radius:50px;
+    font-weight:600;
+    transition:.4s;
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 40px rgba(30,99,255,.25);
+}
+
+.btn2{
+    padding:16px 40px;
+    border:2px solid #1e63ff;
+    color:#1e63ff;
+    border-radius:50px;
+    font-weight:600;
+    transition:.4s;
+}
+
+.btn2:hover{
+    background:#1e63ff;
+    color:#fff;
+}
+
+/* ===========================
+    PRODUCT SECTION
+=========================== */
+
+.products{
+    padding:100px 0;
+    background:#fff;
+}
+
+.products h2{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:60px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+}
+
+.card img{
+    height:260px;
+    object-fit:contain;
+}
+
+.card h3{
+    margin:20px 0 10px;
+}
+
+.rating{
+    color:#f8b400;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.card h4{
+    color:#1e63ff;
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+.card button{
+    width:100%;
+    border:none;
+    background:#1e63ff;
+    color:#fff;
+    padding:14px;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.card button:hover{
+    background:#111;
+}
