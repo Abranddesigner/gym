@@ -1,6 +1,6 @@
-// ===============================
-// HERO SLIDER
-// ===============================
+/*=========================================
+        HERO SLIDER
+=========================================*/
 
 const slides = document.querySelectorAll(".slide");
 
@@ -9,7 +9,9 @@ let currentSlide = 0;
 function showSlide(index){
 
     slides.forEach(slide=>{
+
         slide.classList.remove("active");
+
     });
 
     slides[index].classList.add("active");
@@ -30,154 +32,192 @@ function nextSlide(){
 
 }
 
-setInterval(nextSlide,4000);
+if(slides.length){
+
+    setInterval(nextSlide,4000);
+
+}
 
 
-// ===============================
-// SCROLL TO TOP
-// ===============================
+/*=========================================
+        MOBILE MENU
+=========================================*/
+
+const menuBtn = document.querySelector(".menu-btn");
+
+const menu = document.querySelector(".menu");
+
+if(menuBtn){
+
+menuBtn.addEventListener("click",()=>{
+
+menu.classList.toggle("show");
+
+});
+
+}
+
+
+/*=========================================
+        SHOW ALL PRODUCTS
+=========================================*/
+
+const showBtn = document.getElementById("showProducts");
+
+const products = document.querySelectorAll(".more-product");
+
+if(showBtn){
+
+showBtn.addEventListener("click",()=>{
+
+products.forEach(product=>{
+
+product.style.display="block";
+
+});
+
+showBtn.style.display="none";
+
+});
+
+}
+
+
+/*=========================================
+        SCROLL TO TOP
+=========================================*/
 
 const topBtn = document.getElementById("topBtn");
 
 window.addEventListener("scroll",()=>{
 
-    if(window.scrollY > 300){
+if(window.scrollY > 300){
 
-        topBtn.style.display="flex";
+topBtn.style.display="flex";
 
-    }
+}else{
 
-    else{
+topBtn.style.display="none";
 
-        topBtn.style.display="none";
-
-    }
+}
 
 });
 
 topBtn.addEventListener("click",()=>{
 
-    window.scrollTo({
+window.scrollTo({
 
-        top:0,
+top:0,
 
-        behavior:"smooth"
+behavior:"smooth"
 
-    });
+});
 
 });
 
 
-// ===============================
-// STICKY HEADER SHADOW
-// ===============================
+/*=========================================
+        ACTIVE MENU
+=========================================*/
+
+const links = document.querySelectorAll(".menu a");
+
+links.forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+links.forEach(item=>{
+
+item.classList.remove("active");
+
+});
+
+link.classList.add("active");
+
+});
+
+});
+
+
+/*=========================================
+        SMOOTH SCROLL
+=========================================*/
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+anchor.addEventListener("click",function(e){
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+menu.classList.remove("show");
+
+}
+
+});
+
+});
+
+
+/*=========================================
+        SCROLL ANIMATION
+=========================================*/
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},
+{
+threshold:.15
+});
+
+document.querySelectorAll(
+
+'.product-card,.benefit-card,.pure-box,.stat-card,.footer-feature div'
+
+).forEach(el=>{
+
+el.classList.add("hidden");
+
+observer.observe(el);
+
+});
+
+
+/*=========================================
+        HEADER SHADOW
+=========================================*/
 
 const header = document.querySelector(".header");
 
 window.addEventListener("scroll",()=>{
 
-    if(window.scrollY > 20){
+if(window.scrollY>20){
 
-        header.style.boxShadow="0 10px 30px rgba(0,0,0,.08)";
+header.style.boxShadow="0 10px 25px rgba(0,0,0,.08)";
 
-    }
+}else{
 
-    else{
+header.style.boxShadow="none";
 
-        header.style.boxShadow="0 2px 15px rgba(0,0,0,.06)";
-
-    }
-
-});
-
-
-// ===============================
-// ACTIVE MENU
-// ===============================
-
-const menuLinks=document.querySelectorAll(".menu a");
-
-menuLinks.forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        menuLinks.forEach(item=>{
-
-            item.classList.remove("active");
-
-        });
-
-        link.classList.add("active");
-
-    });
-
-});
-
-
-// ===============================
-// MOBILE MENU
-// ===============================
-
-const mobileBtn=document.querySelector(".mobile-menu");
-
-const menu=document.querySelector(".menu");
-
-mobileBtn.addEventListener("click",()=>{
-
-    menu.classList.toggle("show");
-
-});
-
-
-// ===============================
-// SMOOTH SCROLL
-// ===============================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-
-    anchor.addEventListener("click",function(e){
-
-        e.preventDefault();
-
-        const target=document.querySelector(this.getAttribute("href"));
-
-        if(target){
-
-            target.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-
-// ===============================
-// FADE ANIMATION
-// ===============================
-
-const observer=new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-});
-
-document.querySelectorAll(".product-card,.benefit-card,.service-card,.stat-box,.pure-box").forEach(el=>{
-
-    el.classList.add("hidden");
-
-    observer.observe(el);
+}
 
 });
