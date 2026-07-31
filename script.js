@@ -1,17 +1,16 @@
 /*=========================================
-        HERO SLIDER
+            HERO SLIDER
 =========================================*/
 
 const slides = document.querySelectorAll(".slide");
 
 let currentSlide = 0;
+let sliderInterval = null;
 
 function showSlide(index){
 
-    slides.forEach(slide=>{
-
+    slides.forEach((slide)=>{
         slide.classList.remove("active");
-
     });
 
     slides[index].classList.add("active");
@@ -23,65 +22,96 @@ function nextSlide(){
     currentSlide++;
 
     if(currentSlide >= slides.length){
-
         currentSlide = 0;
-
     }
 
     showSlide(currentSlide);
 
 }
 
-if(slides.length){
+function startSlider(){
 
-    setInterval(nextSlide,4000);
+    if(slides.length <= 1) return;
+
+    sliderInterval = setInterval(nextSlide,4000);
 
 }
 
+function stopSlider(){
+
+    clearInterval(sliderInterval);
+
+}
+
+if(slides.length){
+
+    showSlide(0);
+
+    startSlider();
+
+    const slider = document.querySelector(".slider");
+
+    slider.addEventListener("mouseenter",stopSlider);
+
+    slider.addEventListener("mouseleave",startSlider);
+
+}
 
 /*=========================================
-        MOBILE MENU
+            MOBILE MENU
 =========================================*/
 
 const menuBtn = document.querySelector(".menu-btn");
-
 const menu = document.querySelector(".menu");
 
-if(menuBtn){
+if(menuBtn && menu){
 
-menuBtn.addEventListener("click",()=>{
+    menuBtn.addEventListener("click",()=>{
 
-menu.classList.toggle("show");
+        menu.classList.toggle("show");
 
-});
+        menuBtn.classList.toggle("active");
+
+    });
 
 }
 
-
 /*=========================================
-        SHOW ALL PRODUCTS
+        SEE MORE PRODUCTS
 =========================================*/
 
 const showBtn = document.getElementById("showProducts");
+const productGrid = document.querySelector(".product-grid");
 
-const products = document.querySelectorAll(".more-product");
+if (showBtn && productGrid) {
 
-if(showBtn){
+    showBtn.addEventListener("click", () => {
 
-showBtn.addEventListener("click",()=>{
+        productGrid.classList.toggle("show-all");
 
-products.forEach(product=>{
+        if (productGrid.classList.contains("show-all")) {
 
-product.style.display="block";
+            showBtn.innerText = "SHOW LESS";
 
-});
+            document.querySelector("#products").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
-showBtn.style.display="none";
+        } else {
 
-});
+            showBtn.innerText = "SEE MORE";
+
+            document.querySelector("#products").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
 
 }
-
 
 /*=========================================
         SCROLL TO TOP
@@ -89,118 +119,168 @@ showBtn.style.display="none";
 
 const topBtn = document.getElementById("topBtn");
 
-window.addEventListener("scroll",()=>{
+if (topBtn) {
 
-if(window.scrollY > 300){
+    window.addEventListener("scroll", () => {
 
-topBtn.style.display="flex";
+        if (window.scrollY > 300) {
 
-}else{
+            topBtn.style.display = "flex";
 
-topBtn.style.display="none";
+        } else {
 
-}
+            topBtn.style.display = "none";
 
-});
+        }
 
-topBtn.addEventListener("click",()=>{
+    });
 
-window.scrollTo({
+    topBtn.addEventListener("click", () => {
 
-top:0,
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-behavior:"smooth"
-
-});
-
-});
-
-
-/*=========================================
-        ACTIVE MENU
-=========================================*/
-
-const links = document.querySelectorAll(".menu a");
-
-links.forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-links.forEach(item=>{
-
-item.classList.remove("active");
-
-});
-
-link.classList.add("active");
-
-});
-
-});
-
-
-/*=========================================
-        SMOOTH SCROLL
-=========================================*/
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-
-anchor.addEventListener("click",function(e){
-
-const target=document.querySelector(this.getAttribute("href"));
-
-if(target){
-
-e.preventDefault();
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-menu.classList.remove("show");
+    });
 
 }
 
-});
+/*=========================================
+        ACTIVE MENU + SMOOTH SCROLL
+=========================================*/
+
+const navLinks = document.querySelectorAll(".menu a");
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", function (e) {
+
+        const href = this.getAttribute("href");
+
+        if (href.startsWith("#")) {
+
+            const target = document.querySelector(href);
+
+            if (target) {
+
+                e.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }
+
+        navLinks.forEach(item => item.classList.remove("active"));
+
+        this.classList.add("active");
+
+        if (menu) {
+
+            menu.classList.remove("show");
+
+        }
+
+    });
 
 });
 
+/*=========================================
+        AUTO ACTIVE SECTION
+=========================================*/
+
+const sections = document.querySelectorAll("section[id]");
+
+window.addEventListener("scroll", () => {
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+
+        if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ) {
+            currentSection = section.getAttribute("id");
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        const href = link.getAttribute("href");
+
+        if (href === `#${currentSection}`) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
 
 /*=========================================
         SCROLL ANIMATION
 =========================================*/
 
-const observer = new IntersectionObserver((entries)=>{
+const animatedElements = document.querySelectorAll(`
+    .product-card,
+    .benefit-card,
+    .pure-box,
+    .stat-card,
+    .about-left,
+    .about-right,
+    .trusted-text,
+    .footer-box,
+    .footer-feature div
+`);
 
-entries.forEach(entry=>{
+const observer = new IntersectionObserver((entries, observer) => {
 
-if(entry.isIntersecting){
+    entries.forEach(entry => {
 
-entry.target.classList.add("show");
+        if (entry.isIntersecting) {
 
-}
+            entry.target.classList.add("show");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+});
+
+animatedElements.forEach(element => {
+
+    element.classList.add("hidden");
+
+    observer.observe(element);
 
 });
 
-},
-{
-threshold:.15
-});
+/*=========================================
+        FADE ANIMATION DELAY
+=========================================*/
 
-document.querySelectorAll(
+animatedElements.forEach((element, index) => {
 
-'.product-card,.benefit-card,.pure-box,.stat-card,.footer-feature div'
-
-).forEach(el=>{
-
-el.classList.add("hidden");
-
-observer.observe(el);
+    element.style.transitionDelay = `${index * 0.08}s`;
 
 });
-
 
 /*=========================================
         HEADER SHADOW
@@ -208,16 +288,68 @@ observer.observe(el);
 
 const header = document.querySelector(".header");
 
-window.addEventListener("scroll",()=>{
+function updateHeader() {
 
-if(window.scrollY>20){
+    if (!header) return;
 
-header.style.boxShadow="0 10px 25px rgba(0,0,0,.08)";
+    if (window.scrollY > 20) {
 
-}else{
+        header.classList.add("scrolled");
 
-header.style.boxShadow="none";
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
 
 }
 
+window.addEventListener("scroll", updateHeader);
+
+updateHeader();
+
+/*=========================================
+        PAGE LOAD ANIMATION
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+    showSlide(0);
+
 });
+
+/*=========================================
+        RESIZE FIX
+=========================================*/
+
+window.addEventListener("resize", () => {
+
+    if (window.innerWidth > 768 && menu) {
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+/*=========================================
+        PERFORMANCE
+=========================================*/
+
+document.addEventListener("visibilitychange", () => {
+
+    if (document.hidden) {
+
+        stopSlider();
+
+    } else {
+
+        startSlider();
+
+    }
+
+});
+
+console.log("FJ1 Wellness Nutrition Website Loaded Successfully ✅");
