@@ -996,13 +996,17 @@ grid-template-columns:repeat(2,1fr);
         width:90px;
     }
 
-    .product-grid,
     .benefit-grid,
-    .stats-grid,
-    .footer-feature,
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
+.stats-grid,
+.footer-feature,
+.footer-grid{
+    grid-template-columns:1fr;
+}
+
+.product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
 
     .pure-right{
         grid-template-columns:1fr;
@@ -1028,16 +1032,14 @@ grid-template-columns:repeat(2,1fr);
         width:100%;
     }
 
-    /* Mobile = 3 Products */
+    /* Mobile = 4 Products */
 
-    .product-grid .product-card:nth-child(n+4){
-        display:none;
-    }
+.product-grid .product-card:nth-child(n+5){
+    display:none;
+}
 
-    .product-grid.show-all .product-card{
-        display:block;
-    }
-
+.product-grid.show-all .product-card{
+    display:block;
 }
 
 /*=========================================
