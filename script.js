@@ -1,17 +1,30 @@
 /*=========================================
-            HERO SLIDER
+        FJ1 WELLNESS SCRIPT
+        PART 1
+=========================================*/
+
+/*=========================================
+        HERO SLIDER
 =========================================*/
 
 const slides = document.querySelectorAll(".slide");
 
 let currentSlide = 0;
-let sliderInterval;
+let sliderInterval = null;
 
 function showSlide(index) {
 
-    slides.forEach(slide => slide.classList.remove("active"));
+    slides.forEach(slide => {
 
-    slides[index].classList.add("active");
+        slide.classList.remove("active");
+
+    });
+
+    if (slides[index]) {
+
+        slides[index].classList.add("active");
+
+    }
 
 }
 
@@ -53,14 +66,18 @@ if (slides.length) {
 
     const slider = document.querySelector(".slider");
 
-    slider.addEventListener("mouseenter", stopSlider);
+    if (slider) {
 
-    slider.addEventListener("mouseleave", startSlider);
+        slider.addEventListener("mouseenter", stopSlider);
+
+        slider.addEventListener("mouseleave", startSlider);
+
+    }
 
 }
 
 /*=========================================
-            MOBILE MENU
+        MOBILE MENU
 =========================================*/
 
 const menuBtn = document.querySelector(".menu-btn");
@@ -78,15 +95,23 @@ if (menuBtn && menu) {
 
 }
 
-/* Close menu after click */
+/* Close Menu */
 
 document.querySelectorAll(".menu a").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        if (menu) menu.classList.remove("show");
+        if (menu) {
 
-        if (menuBtn) menuBtn.classList.remove("active");
+            menu.classList.remove("show");
+
+        }
+
+        if (menuBtn) {
+
+            menuBtn.classList.remove("active");
+
+        }
 
     });
 
@@ -105,18 +130,29 @@ if (showBtn && productGrid) {
 
         productGrid.classList.add("show-all");
 
-        // Button hide permanently
         showBtn.style.display = "none";
-
-        // Smooth scroll
-        document.querySelector("#products").scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
 
     });
 
 }
+
+/*=========================================
+        DISABLE PRODUCT CLICK
+=========================================*/
+
+document.querySelectorAll(".product-card").forEach(card => {
+
+    card.style.cursor = "default";
+
+    card.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        e.stopPropagation();
+
+    });
+
+});
 
 /*=========================================
         SCROLL TO TOP
@@ -128,16 +164,25 @@ if (topBtn) {
 
     window.addEventListener("scroll", () => {
 
-        topBtn.style.display =
-            window.scrollY > 300 ? "flex" : "none";
+        if (window.scrollY > 300) {
+
+            topBtn.style.display = "flex";
+
+        } else {
+
+            topBtn.style.display = "none";
+
+        }
 
     });
 
     topBtn.addEventListener("click", () => {
 
         window.scrollTo({
+
             top: 0,
             behavior: "smooth"
+
         });
 
     });
@@ -152,22 +197,22 @@ const navLinks = document.querySelectorAll(".menu a");
 
 navLinks.forEach(link => {
 
-    link.addEventListener("click", function(e){
+    link.addEventListener("click", function (e) {
 
         const href = this.getAttribute("href");
 
-        if(href.startsWith("#")){
+        if (href.startsWith("#")) {
 
             e.preventDefault();
 
             const target = document.querySelector(href);
 
-            if(target){
+            if (target) {
 
                 target.scrollIntoView({
 
-                    behavior:"smooth",
-                    block:"start"
+                    behavior: "smooth",
+                    block: "start"
 
                 });
 
@@ -175,11 +220,15 @@ navLinks.forEach(link => {
 
         }
 
-        navLinks.forEach(item=>item.classList.remove("active"));
+        navLinks.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
 
         this.classList.add("active");
 
-        if(menu){
+        if (menu) {
 
             menu.classList.remove("show");
 
@@ -204,8 +253,12 @@ window.addEventListener("scroll", () => {
         const top = section.offsetTop - 120;
         const height = section.offsetHeight;
 
-        if (window.scrollY >= top &&
-            window.scrollY < top + height) {
+        if (
+
+            window.scrollY >= top &&
+            window.scrollY < top + height
+
+        ) {
 
             current = section.getAttribute("id");
 
@@ -224,6 +277,48 @@ window.addEventListener("scroll", () => {
         }
 
     });
+
+});
+
+/*=========================================
+        HEADER SHADOW
+=========================================*/
+
+const header = document.querySelector(".header");
+
+function updateHeader() {
+
+    if (!header) return;
+
+    if (window.scrollY > 20) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+}
+
+window.addEventListener("scroll", updateHeader);
+
+updateHeader();
+
+/*=========================================
+        PAGE LOAD
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+    if (slides.length) {
+
+        showSlide(0);
+
+    }
 
 });
 
@@ -268,49 +363,7 @@ document.querySelectorAll(`
 });
 
 /*=========================================
-        HEADER SHADOW
-=========================================*/
-
-const header = document.querySelector(".header");
-
-function headerShadow() {
-
-    if (!header) return;
-
-    if (window.scrollY > 20) {
-
-        header.classList.add("scrolled");
-
-    } else {
-
-        header.classList.remove("scrolled");
-
-    }
-
-}
-
-window.addEventListener("scroll", headerShadow);
-
-headerShadow();
-
-/*=========================================
-        PAGE LOAD
-=========================================*/
-
-window.addEventListener("load", () => {
-
-    document.body.classList.add("loaded");
-
-    if (slides.length) {
-
-        showSlide(0);
-
-    }
-
-});
-
-/*=========================================
-        RESIZE FIX
+        WINDOW RESIZE
 =========================================*/
 
 window.addEventListener("resize", () => {
@@ -324,7 +377,7 @@ window.addEventListener("resize", () => {
 });
 
 /*=========================================
-        PERFORMANCE
+        PAGE VISIBILITY
 =========================================*/
 
 document.addEventListener("visibilitychange", () => {
@@ -353,9 +406,11 @@ if (minus && plus && quantity) {
 
     minus.addEventListener("click", () => {
 
-        if (parseInt(quantity.value) > 1) {
+        let value = parseInt(quantity.value);
 
-            quantity.value--;
+        if (value > 1) {
+
+            quantity.value = value - 1;
 
         }
 
@@ -363,10 +418,91 @@ if (minus && plus && quantity) {
 
     plus.addEventListener("click", () => {
 
-        quantity.value++;
+        let value = parseInt(quantity.value);
+
+        quantity.value = value + 1;
 
     });
 
 }
 
-console.log("✅ FJ1 Wellness Nutrition Website Loaded Successfully");
+/*=========================================
+        SMOOTH HOVER EFFECT
+=========================================*/
+
+document.querySelectorAll(".product-card").forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+
+        card.style.transform = "translateY(-8px)";
+
+    });
+
+    card.addEventListener("mouseleave", () => {
+
+        card.style.transform = "";
+
+    });
+
+});
+
+/*=========================================
+        BUTTON RIPPLE EFFECT
+=========================================*/
+
+document.querySelectorAll("button, .btn").forEach(button => {
+
+    button.addEventListener("click", function(e){
+
+        const ripple = document.createElement("span");
+
+        ripple.className = "ripple";
+
+        const rect = this.getBoundingClientRect();
+
+        ripple.style.left = (e.clientX - rect.left) + "px";
+        ripple.style.top = (e.clientY - rect.top) + "px";
+
+        this.appendChild(ripple);
+
+        setTimeout(() => {
+
+            ripple.remove();
+
+        }, 600);
+
+    });
+
+});
+
+/*=========================================
+        IMAGE LAZY EFFECT
+=========================================*/
+
+document.querySelectorAll("img").forEach(img => {
+
+    img.setAttribute("loading", "lazy");
+
+});
+
+/*=========================================
+        FINAL LOAD
+=========================================*/
+
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+    updateHeader();
+
+    if (slides.length) {
+
+        showSlide(currentSlide);
+
+    }
+
+});
+
+console.clear();
+
+console.log("🚀 FJ1 Wellness Nutrition Loaded Successfully");
