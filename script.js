@@ -1,31 +1,152 @@
 // ===============================
-// FJ1 Website JavaScript
+// HERO SLIDER
 // ===============================
 
-// Sticky Header
-const header = document.querySelector("header");
+const slides = document.querySelectorAll(".slide");
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 60) {
-        header.classList.add("sticky");
-    } else {
-        header.classList.remove("sticky");
+let currentSlide = 0;
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+
+}
+
+function nextSlide(){
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+
+        currentSlide = 0;
+
     }
+
+    showSlide(currentSlide);
+
+}
+
+setInterval(nextSlide,4000);
+
+
+// ===============================
+// SCROLL TO TOP
+// ===============================
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY > 300){
+
+        topBtn.style.display="flex";
+
+    }
+
+    else{
+
+        topBtn.style.display="none";
+
+    }
+
 });
 
-// Smooth Scroll
-document.querySelectorAll('nav a').forEach(link => {
+topBtn.addEventListener("click",()=>{
 
-    link.addEventListener("click", function (e) {
+    window.scrollTo({
 
-        const target = this.getAttribute("href");
+        top:0,
 
-        if (target.startsWith("#")) {
+        behavior:"smooth"
 
-            e.preventDefault();
+    });
 
-            document.querySelector(target).scrollIntoView({
-                behavior: "smooth"
+});
+
+
+// ===============================
+// STICKY HEADER SHADOW
+// ===============================
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY > 20){
+
+        header.style.boxShadow="0 10px 30px rgba(0,0,0,.08)";
+
+    }
+
+    else{
+
+        header.style.boxShadow="0 2px 15px rgba(0,0,0,.06)";
+
+    }
+
+});
+
+
+// ===============================
+// ACTIVE MENU
+// ===============================
+
+const menuLinks=document.querySelectorAll(".menu a");
+
+menuLinks.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        menuLinks.forEach(item=>{
+
+            item.classList.remove("active");
+
+        });
+
+        link.classList.add("active");
+
+    });
+
+});
+
+
+// ===============================
+// MOBILE MENU
+// ===============================
+
+const mobileBtn=document.querySelector(".mobile-menu");
+
+const menu=document.querySelector(".menu");
+
+mobileBtn.addEventListener("click",()=>{
+
+    menu.classList.toggle("show");
+
+});
+
+
+// ===============================
+// SMOOTH SCROLL
+// ===============================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+
+    anchor.addEventListener("click",function(e){
+
+        e.preventDefault();
+
+        const target=document.querySelector(this.getAttribute("href"));
+
+        if(target){
+
+            target.scrollIntoView({
+
+                behavior:"smooth"
+
             });
 
         }
@@ -34,32 +155,18 @@ document.querySelectorAll('nav a').forEach(link => {
 
 });
 
-// Active Menu
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav ul li a");
 
-window.addEventListener("scroll", () => {
+// ===============================
+// FADE ANIMATION
+// ===============================
 
-    let current = "";
+const observer=new IntersectionObserver(entries=>{
 
-    sections.forEach(section => {
+    entries.forEach(entry=>{
 
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.clientHeight;
+        if(entry.isIntersecting){
 
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") == "#" + current) {
-
-            link.classList.add("active");
+            entry.target.classList.add("show");
 
         }
 
@@ -67,149 +174,10 @@ window.addEventListener("scroll", () => {
 
 });
 
-// Product Hover Animation
-const cards = document.querySelectorAll(".card");
+document.querySelectorAll(".product-card,.benefit-card,.service-card,.stat-box,.pure-box").forEach(el=>{
 
-cards.forEach(card => {
+    el.classList.add("hidden");
 
-    card.addEventListener("mouseenter", () => {
-
-        card.style.transform = "translateY(-12px) scale(1.03)";
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "translateY(0) scale(1)";
-
-    });
+    observer.observe(el);
 
 });
-
-// Add To Cart Button
-const buttons = document.querySelectorAll(".card button");
-
-buttons.forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        btn.innerHTML = "✔ Added";
-
-        btn.style.background = "#16a34a";
-
-        setTimeout(() => {
-
-            btn.innerHTML = "Add To Cart";
-
-            btn.style.background = "#1e63ff";
-
-        }, 1500);
-
-    });
-
-});
-
-// Reveal Animation
-const reveals = document.querySelectorAll(
-    ".card,.benefits div,.about,.hero-content,.hero-left,.hero-right"
-);
-
-function reveal() {
-
-    reveals.forEach(item => {
-
-        const windowHeight = window.innerHeight;
-        const top = item.getBoundingClientRect().top;
-
-        if (top < windowHeight - 80) {
-
-            item.classList.add("show");
-
-        }
-
-    });
-
-}
-
-window.addEventListener("scroll", reveal);
-reveal();
-
-// Counter Animation (Future Ready)
-
-const counters = document.querySelectorAll(".counter");
-
-counters.forEach(counter => {
-
-    counter.innerText = "0";
-
-    const update = () => {
-
-        const target = +counter.getAttribute("data-target");
-
-        const c = +counter.innerText;
-
-        const increment = target / 100;
-
-        if (c < target) {
-
-            counter.innerText = `${Math.ceil(c + increment)}`;
-
-            setTimeout(update, 20);
-
-        } else {
-
-            counter.innerText = target;
-
-        }
-
-    };
-
-    update();
-
-});
-
-// Scroll To Top Button
-
-const topBtn = document.createElement("button");
-
-topBtn.innerHTML = "↑";
-
-topBtn.className = "top-btn";
-
-document.body.appendChild(topBtn);
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 500) {
-
-        topBtn.classList.add("show-top");
-
-    } else {
-
-        topBtn.classList.remove("show-top");
-
-    }
-
-});
-
-topBtn.onclick = () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-};
-
-// Loading Animation
-
-window.addEventListener("load", () => {
-
-    document.body.classList.add("loaded");
-
-});
-
-console.log("✅ FJ1 Website Loaded Successfully");
