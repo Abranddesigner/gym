@@ -353,3 +353,29 @@ document.addEventListener("visibilitychange", () => {
 });
 
 console.log("FJ1 Wellness Nutrition Website Loaded Successfully ✅");
+
+/* Product Quantity */
+
+const minus=document.querySelector(".minus");
+const plus=document.querySelector(".plus");
+const quantity=document.getElementById("quantity");
+
+if(minus && plus && quantity){
+
+minus.onclick=()=>{
+
+if(quantity.value>1){
+
+quantity.value--;
+
+}
+
+};
+
+plus.onclick=()=>{
+
+quantity.value++;
+
+};
+
+}
