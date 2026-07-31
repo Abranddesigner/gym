@@ -1123,3 +1123,46 @@ padding:60px 0 20px;
 }
 
 }
+
+/* Animation */
+
+.hidden{
+
+    opacity:0;
+    transform:translateY(40px);
+    transition:.8s;
+
+}
+
+.show{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
+/* Mobile Menu */
+
+@media(max-width:768px){
+
+.menu{
+
+display:none;
+position:absolute;
+top:90px;
+left:0;
+width:100%;
+background:#fff;
+padding:20px 0;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.menu.show{
+
+display:flex;
+flex-direction:column;
+
+}
+
+}
