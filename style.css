@@ -55,7 +55,7 @@ ul{
     top:0;
     left:0;
     width:100%;
-    height:90px;
+    height:70px;
     background:#ffffff;
     border-bottom:1px solid #ececec;
     z-index:9999;
@@ -64,11 +64,11 @@ ul{
 
 .header.scrolled{
     background:#fff;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
 .nav{
-    height:90px;
+    height:70px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -80,13 +80,13 @@ ul{
 }
 
 .logo img{
-    width:170px;
+    width:145px;
     display:block;
     transition:.35s;
 }
 
 .logo:hover img{
-    transform:scale(1.05);
+    transform:scale(1.03);
 }
 
 nav{
@@ -96,7 +96,7 @@ nav{
 .menu{
     display:flex;
     align-items:center;
-    gap:45px;
+    gap:35px;
 }
 
 .menu li{
@@ -106,7 +106,7 @@ nav{
 .menu li a{
     position:relative;
     display:inline-block;
-    padding:8px 0;
+    padding:6px 0;
     font-size:15px;
     font-weight:600;
     color:#222;
@@ -117,7 +117,7 @@ nav{
     content:"";
     position:absolute;
     left:0;
-    bottom:-5px;
+    bottom:-4px;
     width:0;
     height:2px;
     background:#005BFF;
@@ -136,14 +136,14 @@ nav{
 
 .menu-btn{
     display:none;
-    font-size:30px;
+    font-size:28px;
     cursor:pointer;
 }
 
-/* Header Fixed ke liye */
+/* Header Fixed */
 
 body{
-    padding-top:90px;
+    padding-top:70px;
 }
 
 /*=========================
@@ -153,33 +153,33 @@ body{
 @media(max-width:768px){
 
     .header{
-        height:75px;
+        height:60px;
     }
 
     body{
-        padding-top:75px;
+        padding-top:60px;
     }
 
     .nav{
-        height:75px;
+        height:60px;
     }
 
     .logo img{
-        width:135px;
+        width:120px;
     }
 
     .menu{
         position:absolute;
-        top:75px;
+        top:60px;
         left:0;
         width:100%;
         background:#fff;
         display:none;
         flex-direction:column;
-        gap:20px;
-        padding:25px 0;
+        gap:18px;
+        padding:20px 0;
         border-top:1px solid #eee;
-        box-shadow:0 12px 30px rgba(0,0,0,.08);
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
     }
 
     .menu.show{
@@ -188,6 +188,7 @@ body{
 
     .menu-btn{
         display:block;
+        font-size:26px;
     }
 
 }
