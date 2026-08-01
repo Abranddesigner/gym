@@ -1458,7 +1458,7 @@ grid-template-columns:repeat(2,1fr);
 }
 
 /*=========================================
-        BENEFITS SECTION
+        PRODUCT BENEFITS SECTION
 =========================================*/
 
 .product-benefits,
@@ -1480,7 +1480,9 @@ grid-template-columns:repeat(2,1fr);
     margin-top:40px;
 }
 
-.benefit-card{
+/* OLD benefit-card ➜ product-benefit-card */
+
+.product-benefit-card{
     background:#1b1b1b;
     border:1px solid rgba(255,255,255,.08);
     border-radius:16px;
@@ -1489,27 +1491,26 @@ grid-template-columns:repeat(2,1fr);
     transition:.4s;
 }
 
-.benefit-card:hover{
+.product-benefit-card:hover{
     transform:translateY(-10px);
     border-color:#ff6b00;
 }
 
-.benefit-card i{
+.product-benefit-card i{
     font-size:45px;
     color:#ff6b00;
     margin-bottom:20px;
 }
 
-.benefit-card h3{
+.product-benefit-card h3{
     margin-bottom:15px;
     color:#fff;
 }
 
-.benefit-card p{
+.product-benefit-card p{
     color:#bbb;
     line-height:1.8;
 }
-
 /*=========================================
         NUTRITION TABLE
 =========================================*/
