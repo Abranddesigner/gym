@@ -8,22 +8,19 @@
 
 <title>FJ1 Wellness Nutrition | Product</title>
 
-<meta name="description"
-content="Premium Sports Nutrition">
+<meta name="description" content="Premium Sports Nutrition">
 
-<link rel="icon"
-href="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/file_00000000e07c820881d321c19fa21b72.png">
+<link rel="icon" href="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/file_00000000e07c820881d321c19fa21b72.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="product.css">
 
 </head>
 
@@ -33,103 +30,177 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <header class="header">
 
-<div class="container nav">
+    <div class="container nav">
 
-<a href="index.html" class="logo">
+        <a href="index.html" class="logo">
 
-<img src="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/file_00000000e07c820881d321c19fa21b72.png"
-alt="FJ1 Logo">
+            <img src="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/file_00000000e07c820881d321c19fa21b72.png"
+                alt="FJ1 Logo">
 
-</a>
+        </a>
 
-<nav>
+        <nav>
 
-<ul class="menu">
+            <ul class="menu">
 
-<li><a href="index.html">HOME</a></li>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="index.html#products">PRODUCTS</a></li>
+                <li><a href="index.html#about">ABOUT</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
 
-<li><a href="index.html#products">PRODUCTS</a></li>
+            </ul>
 
-<li><a href="index.html#about">ABOUT</a></li>
+        </nav>
 
-<li><a href="index.html#contact">CONTACT</a></li>
+        <div class="menu-btn">
 
-</ul>
+            <i class="fa-solid fa-bars"></i>
 
-</nav>
+        </div>
 
-<div class="menu-btn">
-
-<i class="fa-solid fa-bars"></i>
-
-</div>
-
-</div>
+    </div>
 
 </header>
 
 <!--================ PRODUCT ================-->
 
-<section class="single-product">
+<section class="product-page">
 
-<div class="container">
+    <div class="container">
 
-<div class="product-page">
+        <div class="product-wrapper">
 
-<!-- Left -->
+            <!-- Product Image -->
 
-<div class="product-image">
+            <div class="product-image">
 
-<img
-src="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/PowerClip%20Rectangle.jpg"
-alt="Creatine">
+                <img src="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/PowerClip%20Rectangle.jpg"
+                    alt="FJ1 Creatine Monohydrate">
 
-</div>
+            </div>
 
-<!-- Right -->
+            <!-- Product Content -->
 
-<div class="product-content">
+            <div class="product-content">
 
-<h1>FJ1 Creatine Monohydrate</h1>
+                <span class="product-category">
 
-<h2>₹100</h2>
+                    SPORTS NUTRITION
 
-<p>
+                </span>
 
-Premium Micronized Creatine Monohydrate for
-Strength, Power, Recovery and Muscle Performance.
+                <h1>
 
-</p>
+                    FJ1 Creatine Monohydrate
 
-<div class="quantity-box">
+                </h1>
 
-<button class="minus">−</button>
+                <div class="rating">
 
-<input
-type="number"
-id="quantity"
-value="1"
-min="1"
-readonly>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
 
-<button class="plus">+</button>
+                    <span>(4.8 / 5)</span>
 
-</div>
+                </div>
 
-<a href="#" class="btn buy-btn" id="buyNowBtn">
+                <h2 class="price">
 
-BUY NOW
+                    ₹100
 
-</a>
+                </h2>
 
-</div>
+                <p class="product-description">
 
-</div>
+                    Premium Micronized Creatine Monohydrate specially formulated to improve strength, power, endurance and muscle recovery for athletes and fitness enthusiasts.
 
-</div>
+                </p>
+
+                <div class="product-features">
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>100% Pure Creatine Monohydrate</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Improves Strength & Performance</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Fast Muscle Recovery</span>
+                    </div>
+
+                </div>
+
+                <!-- Quantity -->
+
+                <div class="quantity-box">
+
+                    <label>Quantity</label>
+
+                    <div class="quantity-selector">
+
+                        <button class="qty-btn minus">−</button>
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            value="1"
+                            min="1"
+                            readonly>
+
+                        <button class="qty-btn plus">+</button>
+
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+
+                <div class="product-buttons">
+
+                    <a href="#" class="buy-btn">
+
+                        BUY NOW
+
+                    </a>
+
+                    <a href="#" class="cart-btn">
+
+                        ADD TO CART
+
+                    </a>
+
+                </div>
+
+                <!-- Extra Info -->
+
+                <div class="product-extra">
+
+                    <p>
+                        <i class="fa-solid fa-truck-fast"></i>
+                        Fast Shipping Across India
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-shield"></i>
+                        100% Genuine Product
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-rotate-left"></i>
+                        Easy Return Policy
+                    </p>
+
+                </div>
 
 </section>
-
     <!--================ FOOTER ================-->
 
 <footer class="footer">
@@ -141,7 +212,8 @@ BUY NOW
             <div class="footer-box">
 
                 <img src="https://raw.githubusercontent.com/Abranddesigner/gym/refs/heads/main/file_00000000e07c820881d321c19fa21b72.png"
-                    alt="FJ1 Logo" class="footer-logo">
+                    alt="FJ1 Logo"
+                    class="footer-logo">
 
                 <p>
                     Premium Sports Nutrition for Strength,
@@ -156,7 +228,15 @@ BUY NOW
 
                 <p>📞 +91 7014745787</p>
 
-                <p>✉️ Fj1wellnessnutrition35@gmail.com</p>
+                <p>✉️ fj1wellnessnutrition35@gmail.com</p>
+
+                <a href="https://wa.me/917014745787"
+                   target="_blank"
+                   class="btn">
+
+                    WhatsApp Now
+
+                </a>
 
             </div>
 
@@ -176,43 +256,44 @@ BUY NOW
 
 <script>
 
+/*================ QUANTITY ================*/
+
 const minus=document.querySelector(".minus");
 const plus=document.querySelector(".plus");
 const quantity=document.getElementById("quantity");
 
-if(minus && plus){
+if(minus && plus && quantity){
 
-minus.onclick=()=>{
+    minus.onclick=()=>{
 
-let q=parseInt(quantity.value);
+        if(quantity.value>1){
 
-if(q>1){
+            quantity.value--;
 
-quantity.value=q-1;
+        }
 
-}
+    };
 
-};
+    plus.onclick=()=>{
 
-plus.onclick=()=>{
+        quantity.value++;
 
-quantity.value=parseInt(quantity.value)+1;
-
-};
+    };
 
 }
 
-/* BUY NOW */
+/*================ BUY NOW ================*/
 
-const buyBtn=document.getElementById("buyNowBtn");
+const buyBtn=document.querySelector(".buy-btn");
 
-buyBtn.addEventListener("click",function(e){
+if(buyBtn){
+
+buyBtn.onclick=(e)=>{
 
 e.preventDefault();
 
 const product=document.querySelector(".product-content h1").innerText;
-
-const qty=document.getElementById("quantity").value;
+const qty=quantity.value;
 
 const msg=`Hello FJ1 Wellness Nutrition,
 
@@ -225,32 +306,26 @@ Quantity : ${qty}
 Please share payment details.`;
 
 window.open(
-
 `https://wa.me/917014745787?text=${encodeURIComponent(msg)}`,
-
 "_blank"
-
 );
 
-});
+};
 
-/* Mobile Menu */
+}
+
+/*================ MOBILE MENU ================*/
 
 const menuBtn=document.querySelector(".menu-btn");
 const menu=document.querySelector(".menu");
 
-if(menuBtn){
+if(menuBtn && menu){
 
-menuBtn.onclick=()=>{
-
-menu.classList.toggle("show");
-
-};
+menuBtn.onclick=()=>menu.classList.toggle("show");
 
 }
 
 </script>
 
 </body>
-
 </html>
