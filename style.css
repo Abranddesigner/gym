@@ -566,6 +566,11 @@ grid-template-columns:repeat(2,1fr);
     text-align:center;
     transition:.35s;
     box-shadow:0 8px 20px rgba(0,0,0,.05);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:240px;
 }
 
 .benefit-card:hover{
@@ -577,30 +582,93 @@ grid-template-columns:repeat(2,1fr);
 .benefit-icon{
     width:70px;
     height:70px;
-    margin:auto;
-    margin-bottom:18px;
+    margin:0 auto 18px;
     border-radius:50%;
-    background:#eef5ff;
+    background:#fff;
+    border:2px solid #005BFF;
     display:flex;
     align-items:center;
     justify-content:center;
+    flex-shrink:0;
 }
 
 .benefit-icon i{
     font-size:30px;
     color:#005BFF;
+    line-height:1;
 }
 
 .benefit-card h3{
     font-size:17px;
     font-weight:600;
     margin-bottom:10px;
+    color:#111;
 }
 
 .benefit-card p{
     font-size:14px;
     color:#666;
     line-height:1.7;
+    margin:0;
+}
+
+/*=========================================
+        TABLET
+=========================================*/
+
+@media(max-width:992px){
+
+    .benefit-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:18px;
+    }
+
+}
+
+/*=========================================
+        MOBILE
+=========================================*/
+
+@media(max-width:768px){
+
+    .benefits{
+        padding:30px 0;
+    }
+
+    .benefit-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    }
+
+    .benefit-card{
+        background:#fff;
+        padding:18px 12px;
+        min-height:190px;
+        border-radius:15px;
+    }
+
+    .benefit-icon{
+        width:58px;
+        height:58px;
+        margin:0 auto 12px;
+        background:#fff;
+        border:2px solid #005BFF;
+    }
+
+    .benefit-icon i{
+        font-size:24px;
+    }
+
+    .benefit-card h3{
+        font-size:15px;
+        margin-bottom:8px;
+    }
+
+    .benefit-card p{
+        font-size:12px;
+        line-height:1.5;
+    }
+
 }
 
 /*=========================================
