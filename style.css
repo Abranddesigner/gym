@@ -236,7 +236,7 @@ body{
     justify-content:center;
     align-items:center;
     gap:20px;
-    margin:70px 0 45px;
+    margin:20px 0 25px;
 }
 
 .section-title h2{
@@ -452,7 +452,7 @@ grid-template-columns:repeat(2,1fr);
 =========================================*/
 
 .about{
-    padding:90px 0;
+    padding:45px 0 30px;
 }
 
 .about-grid{
@@ -508,7 +508,7 @@ grid-template-columns:repeat(2,1fr);
 =========================================*/
 
 .benefits{
-    padding:70px 0;
+    padding:35px 0 45px;
 }
 
 .benefit-grid{
@@ -567,7 +567,7 @@ grid-template-columns:repeat(2,1fr);
 =========================================*/
 
 .pure-section{
-    padding:80px 0;
+    padding:45px 0;
 }
 
 .pure-grid{
@@ -651,7 +651,7 @@ grid-template-columns:repeat(2,1fr);
 =========================================*/
 
 .stats{
-    padding:80px 0;
+    padding:45px 0;
     background:#f8f9fb;
 }
 
