@@ -257,17 +257,18 @@ body{
     }
 
     .section-title{
-        gap:10px;
+        gap:8px;
     }
 
     .section-title h2{
-        font-size:22px;
-        white-space:normal;
+        font-size:clamp(16px,4vw,20px);
+        white-space:nowrap;
+        line-height:1.2;
     }
 
     .line{
-        width:70px;
-        flex:0 0 70px;
+        width:45px;
+        flex:0 0 45px;
     }
 
 }
