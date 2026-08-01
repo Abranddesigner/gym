@@ -261,6 +261,12 @@ body{
     padding:40px 0 80px;
 }
 
+.product-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+
 .product-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
