@@ -2,8 +2,8 @@
         QUANTITY
 =========================================*/
 
-const minusBtn = document.querySelector(".minus");
-const plusBtn = document.querySelector(".plus");
+const minusBtn = document.querySelector(".qty-minus");
+const plusBtn = document.querySelector(".qty-plus");
 const quantity = document.getElementById("quantity");
 
 if (minusBtn && plusBtn && quantity) {
