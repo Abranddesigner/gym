@@ -439,5 +439,37 @@ document.documentElement.style.scrollBehavior="smooth";
         FINAL MESSAGE
 =========================================*/
 
+const buyBtn = document.getElementById("buyNowBtn");
+
+if (buyBtn) {
+
+    buyBtn.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const qty = document.getElementById("quantity").value;
+
+        const productName = document.querySelector(".product-content h1").innerText;
+
+        const message =
+`Hello FJ1 Wellness Nutrition,
+
+I want to order:
+
+Product : ${productName}
+Quantity : ${qty}
+
+Please share payment details.`;
+
+        window.open(
+            "https://wa.me/918440048355?text=" +
+            encodeURIComponent(message),
+            "_blank"
+        );
+
+    });
+
+}
+
 console.log("%cFJ1 Wellness Loaded Successfully 🚀",
 "color:#fff;background:#005BFF;padding:8px 14px;border-radius:5px;font-size:13px;");
