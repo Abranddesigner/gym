@@ -1,26 +1,36 @@
 /*=========================================
         FJ1 WELLNESS SCRIPT
-        PART 1
+        OPTIMIZED PART 1
 =========================================*/
 
-/*=========================================
-        HERO SLIDER
-=========================================*/
+/*========== SELECTORS ==========*/
 
-const slides = document.querySelectorAll(".slide");
+const $ = (e)=>document.querySelector(e);
+const $$ = (e)=>document.querySelectorAll(e);
+
+const header = $(".header");
+const menu = $(".menu");
+const menuBtn = $(".menu-btn");
+
+const productGrid = $(".product-grid");
+const showBtn = $("#showProducts");
+
+const topBtn = $("#topBtn");
+
+const slides = $$(".slide");
 
 let currentSlide = 0;
-let sliderInterval = null;
+let slider = null;
 
-function showSlide(index) {
+/*=========================================
+            HERO SLIDER
+=========================================*/
 
-    slides.forEach(slide => {
+function showSlide(index){
 
-        slide.classList.remove("active");
+    slides.forEach(slide=>slide.classList.remove("active"));
 
-    });
-
-    if (slides[index]) {
+    if(slides[index]){
 
         slides[index].classList.add("active");
 
@@ -28,13 +38,13 @@ function showSlide(index) {
 
 }
 
-function nextSlide() {
+function nextSlide(){
 
     currentSlide++;
 
-    if (currentSlide >= slides.length) {
+    if(currentSlide>=slides.length){
 
-        currentSlide = 0;
+        currentSlide=0;
 
     }
 
@@ -42,50 +52,47 @@ function nextSlide() {
 
 }
 
-function startSlider() {
+function startSlider(){
 
-    if (slides.length <= 1) return;
+    if(slides.length<=1) return;
 
-    clearInterval(sliderInterval);
+    clearInterval(slider);
 
-    sliderInterval = setInterval(nextSlide, 4000);
-
-}
-
-function stopSlider() {
-
-    clearInterval(sliderInterval);
+    slider=setInterval(nextSlide,3000);
 
 }
 
-if (slides.length) {
+function stopSlider(){
+
+    clearInterval(slider);
+
+}
+
+if(slides.length){
 
     showSlide(0);
 
     startSlider();
 
-    const slider = document.querySelector(".slider");
+    const sliderBox=$(".slider");
 
-    if (slider) {
+    if(sliderBox){
 
-        slider.addEventListener("mouseenter", stopSlider);
+        sliderBox.addEventListener("mouseenter",stopSlider);
 
-        slider.addEventListener("mouseleave", startSlider);
+        sliderBox.addEventListener("mouseleave",startSlider);
 
     }
 
 }
 
 /*=========================================
-        MOBILE MENU
+            MOBILE MENU
 =========================================*/
 
-const menuBtn = document.querySelector(".menu-btn");
-const menu = document.querySelector(".menu");
+if(menuBtn){
 
-if (menuBtn && menu) {
-
-    menuBtn.addEventListener("click", () => {
+    menuBtn.addEventListener("click",()=>{
 
         menu.classList.toggle("show");
 
@@ -95,60 +102,43 @@ if (menuBtn && menu) {
 
 }
 
-/* Close Menu */
+$$(".menu a").forEach(link=>{
 
-document.querySelectorAll(".menu a").forEach(link => {
+    link.addEventListener("click",()=>{
 
-    link.addEventListener("click", () => {
+        menu.classList.remove("show");
 
-        if (menu) {
-
-            menu.classList.remove("show");
-
-        }
-
-        if (menuBtn) {
-
-            menuBtn.classList.remove("active");
-
-        }
+        menuBtn.classList.remove("active");
 
     });
 
 });
 
 /*=========================================
-        SEE MORE PRODUCTS
+            SEE MORE
 =========================================*/
 
-const showBtn = document.getElementById("showProducts");
-const productGrid = document.querySelector(".product-grid");
+if(showBtn){
 
-if (showBtn && productGrid) {
-
-    showBtn.addEventListener("click", () => {
+    showBtn.addEventListener("click",()=>{
 
         productGrid.classList.add("show-all");
 
-        showBtn.style.display = "none";
+        showBtn.style.display="none";
 
     });
 
 }
 
 /*=========================================
-        DISABLE PRODUCT CLICK
+        PRODUCT DISABLE CLICK
 =========================================*/
 
-document.querySelectorAll(".product-card").forEach(card => {
+$$(".product-card").forEach(card=>{
 
-    card.style.cursor = "default";
-
-    card.addEventListener("click", function(e){
+    card.addEventListener("click",(e)=>{
 
         e.preventDefault();
-
-        e.stopPropagation();
 
     });
 
@@ -158,34 +148,19 @@ document.querySelectorAll(".product-card").forEach(card => {
         SCROLL TO TOP
 =========================================*/
 
-const topBtn = document.getElementById("topBtn");
+if(topBtn){
 
-if (topBtn) {
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 300) {
-
-            topBtn.style.display = "flex";
-
-        } else {
-
-            topBtn.style.display = "none";
-
-        }
-
-    });
-
-    topBtn.addEventListener("click", () => {
+    topBtn.onclick=()=>{
 
         window.scrollTo({
 
-            top: 0,
-            behavior: "smooth"
+            top:0,
+
+            behavior:"smooth"
 
         });
 
-    });
+    };
 
 }
 
@@ -193,26 +168,28 @@ if (topBtn) {
         SMOOTH MENU SCROLL
 =========================================*/
 
-const navLinks = document.querySelectorAll(".menu a");
+const navLinks = $$(".menu a");
+const sections = $$("section[id]");
 
-navLinks.forEach(link => {
+navLinks.forEach(link=>{
 
-    link.addEventListener("click", function (e) {
+    link.addEventListener("click",function(e){
 
-        const href = this.getAttribute("href");
+        const href=this.getAttribute("href");
 
-        if (href.startsWith("#")) {
+        if(href.startsWith("#")){
 
             e.preventDefault();
 
-            const target = document.querySelector(href);
+            const target=$(href);
 
-            if (target) {
+            if(target){
 
-                target.scrollIntoView({
+                window.scrollTo({
 
-                    behavior: "smooth",
-                    block: "start"
+                    top:target.offsetTop-65,
+
+                    behavior:"smooth"
 
                 });
 
@@ -220,57 +197,57 @@ navLinks.forEach(link => {
 
         }
 
-        navLinks.forEach(item => {
-
-            item.classList.remove("active");
-
-        });
-
-        this.classList.add("active");
-
-        if (menu) {
-
-            menu.classList.remove("show");
-
-        }
-
     });
 
 });
 
 /*=========================================
-        AUTO ACTIVE SECTION
+        HEADER + ACTIVE MENU + TOP BUTTON
 =========================================*/
 
-const sections = document.querySelectorAll("section[id]");
+window.addEventListener("scroll",()=>{
 
-window.addEventListener("scroll", () => {
+    const scroll=window.scrollY;
 
-    let current = "";
+    /* Header Shadow */
 
-    sections.forEach(section => {
+    if(header){
 
-        const top = section.offsetTop - 120;
-        const height = section.offsetHeight;
+        header.classList.toggle("scrolled",scroll>20);
 
-        if (
+    }
 
-            window.scrollY >= top &&
-            window.scrollY < top + height
+    /* Top Button */
 
-        ) {
+    if(topBtn){
 
-            current = section.getAttribute("id");
+        topBtn.style.display=scroll>300?"flex":"none";
+
+    }
+
+    /* Active Menu */
+
+    let current="";
+
+    sections.forEach(section=>{
+
+        const top=section.offsetTop-120;
+
+        const height=section.offsetHeight;
+
+        if(scroll>=top && scroll<top+height){
+
+            current=section.id;
 
         }
 
     });
 
-    navLinks.forEach(link => {
+    navLinks.forEach(link=>{
 
         link.classList.remove("active");
 
-        if (link.getAttribute("href") === "#" + current) {
+        if(link.getAttribute("href")==="#"+current){
 
             link.classList.add("active");
 
@@ -278,71 +255,32 @@ window.addEventListener("scroll", () => {
 
     });
 
-});
-
-/*=========================================
-        HEADER SHADOW
-=========================================*/
-
-const header = document.querySelector(".header");
-
-function updateHeader() {
-
-    if (!header) return;
-
-    if (window.scrollY > 20) {
-
-        header.classList.add("scrolled");
-
-    } else {
-
-        header.classList.remove("scrolled");
-
-    }
-
-}
-
-window.addEventListener("scroll", updateHeader);
-
-updateHeader();
-
-/*=========================================
-        PAGE LOAD
-=========================================*/
-
-window.addEventListener("load", () => {
-
-    document.body.classList.add("loaded");
-
-    if (slides.length) {
-
-        showSlide(0);
-
-    }
-
-});
+},{passive:true});
 
 /*=========================================
         SCROLL ANIMATION
 =========================================*/
 
-const observer = new IntersectionObserver((entries) => {
+const observer=new IntersectionObserver((entries)=>{
 
-    entries.forEach(entry => {
+    entries.forEach(entry=>{
 
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting){
 
             entry.target.classList.add("show");
+
+            observer.unobserve(entry.target);
 
         }
 
     });
 
-}, {
-    threshold: 0.15
+},{
+    threshold:.08
 });
 
-document.querySelectorAll(`
+$$(
+`
 .product-card,
 .benefit-card,
 .pure-box,
@@ -352,11 +290,10 @@ document.querySelectorAll(`
 .trusted-text,
 .footer-box,
 .footer-feature div
-`).forEach((el, index) => {
+`
+).forEach(el=>{
 
     el.classList.add("hidden");
-
-    el.style.transitionDelay = `${index * 0.08}s`;
 
     observer.observe(el);
 
@@ -366,11 +303,29 @@ document.querySelectorAll(`
         WINDOW RESIZE
 =========================================*/
 
-window.addEventListener("resize", () => {
+window.addEventListener("resize",()=>{
 
-    if (window.innerWidth > 768 && menu) {
+    if(window.innerWidth>768){
 
         menu.classList.remove("show");
+
+        menuBtn.classList.remove("active");
+
+    }
+
+});
+
+/*=========================================
+        PAGE LOAD
+=========================================*/
+
+window.addEventListener("load",()=>{
+
+    document.body.classList.add("loaded");
+
+    if(header){
+
+        header.classList.remove("loading");
 
     }
 
@@ -380,13 +335,13 @@ window.addEventListener("resize", () => {
         PAGE VISIBILITY
 =========================================*/
 
-document.addEventListener("visibilitychange", () => {
+document.addEventListener("visibilitychange",()=>{
 
-    if (document.hidden) {
+    if(document.hidden){
 
         stopSlider();
 
-    } else {
+    }else{
 
         startSlider();
 
@@ -398,104 +353,65 @@ document.addEventListener("visibilitychange", () => {
         PRODUCT QUANTITY
 =========================================*/
 
-const minus = document.querySelector(".minus");
-const plus = document.querySelector(".plus");
-const quantity = document.getElementById("quantity");
+const minus=$(".minus");
+const plus=$(".plus");
+const quantity=$("#quantity");
 
-if (minus && plus && quantity) {
+if(minus && plus && quantity){
 
-    minus.addEventListener("click", () => {
+    minus.addEventListener("click",()=>{
 
-        let value = parseInt(quantity.value);
+        let value=parseInt(quantity.value)||1;
 
-        if (value > 1) {
+        if(value>1){
 
-            quantity.value = value - 1;
+            quantity.value=value-1;
 
         }
 
     });
 
-    plus.addEventListener("click", () => {
+    plus.addEventListener("click",()=>{
 
-        let value = parseInt(quantity.value);
+        let value=parseInt(quantity.value)||1;
 
-        quantity.value = value + 1;
+        quantity.value=value+1;
 
     });
 
 }
 
 /*=========================================
-        SMOOTH HOVER EFFECT
+        IMAGE OPTIMIZATION
 =========================================*/
 
-document.querySelectorAll(".product-card").forEach(card => {
+/* Hero Slider ko lazy load mat karo */
 
-    card.addEventListener("mouseenter", () => {
+$$(".product-card img,.about img,.pure-right img,.footer img").forEach(img=>{
 
-        card.style.transform = "translateY(-8px)";
+    img.loading="lazy";
 
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "";
-
-    });
+    img.decoding="async";
 
 });
 
 /*=========================================
-        BUTTON RIPPLE EFFECT
+        PREVENT IMAGE DRAG
 =========================================*/
 
-document.querySelectorAll("button, .btn").forEach(button => {
+$$("img").forEach(img=>{
 
-    button.addEventListener("click", function(e){
-
-        const ripple = document.createElement("span");
-
-        ripple.className = "ripple";
-
-        const rect = this.getBoundingClientRect();
-
-        ripple.style.left = (e.clientX - rect.left) + "px";
-        ripple.style.top = (e.clientY - rect.top) + "px";
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-
-            ripple.remove();
-
-        }, 600);
-
-    });
+    img.setAttribute("draggable","false");
 
 });
 
 /*=========================================
-        IMAGE LAZY EFFECT
+        PERFORMANCE
 =========================================*/
 
-document.querySelectorAll("img").forEach(img => {
+window.addEventListener("pageshow",()=>{
 
-    img.setAttribute("loading", "lazy");
-
-});
-
-/*=========================================
-        FINAL LOAD
-=========================================*/
-
-window.addEventListener("load", () => {
-
-    document.body.classList.add("loaded");
-
-    updateHeader();
-
-    if (slides.length) {
+    if(slides.length){
 
         showSlide(currentSlide);
 
@@ -503,6 +419,25 @@ window.addEventListener("load", () => {
 
 });
 
-console.clear();
+/*=========================================
+        SMOOTH BUTTON
+=========================================*/
 
-console.log("🚀 FJ1 Wellness Nutrition Loaded Successfully");
+$$(".btn").forEach(btn=>{
+
+    btn.style.willChange="transform";
+
+});
+
+/*=========================================
+        PRELOAD COMPLETE
+=========================================*/
+
+document.documentElement.style.scrollBehavior="smooth";
+
+/*=========================================
+        FINAL MESSAGE
+=========================================*/
+
+console.log("%cFJ1 Wellness Loaded Successfully 🚀",
+"color:#fff;background:#005BFF;padding:8px 14px;border-radius:5px;font-size:13px;");
