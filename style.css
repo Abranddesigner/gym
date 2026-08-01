@@ -566,11 +566,12 @@ grid-template-columns:repeat(2,1fr);
     text-align:center;
     transition:.35s;
     box-shadow:0 8px 20px rgba(0,0,0,.05);
+    min-height:240px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:flex-start;
-    min-height:240px;
 }
 
 .benefit-card:hover{
@@ -584,25 +585,26 @@ grid-template-columns:repeat(2,1fr);
     height:70px;
     margin:0 auto 18px;
     border-radius:50%;
-    background:#fff;
-    border:2px solid #005BFF;
+    background:#005BFF;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     flex-shrink:0;
 }
 
 .benefit-icon i{
     font-size:30px;
-    color:#005BFF;
+    color:#fff;
     line-height:1;
 }
 
 .benefit-card h3{
     font-size:17px;
     font-weight:600;
-    margin-bottom:10px;
     color:#111;
+    margin-bottom:10px;
 }
 
 .benefit-card p{
@@ -643,20 +645,29 @@ grid-template-columns:repeat(2,1fr);
     .benefit-card{
         background:#fff;
         padding:18px 12px;
-        min-height:190px;
+        min-height:185px;
         border-radius:15px;
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
     }
 
     .benefit-icon{
         width:58px;
         height:58px;
         margin:0 auto 12px;
-        background:#fff;
-        border:2px solid #005BFF;
+        background:#005BFF;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
     }
 
     .benefit-icon i{
         font-size:24px;
+        color:#fff;
     }
 
     .benefit-card h3{
@@ -670,7 +681,6 @@ grid-template-columns:repeat(2,1fr);
     }
 
 }
-
 /*=========================================
             PURE SECTION
 =========================================*/
